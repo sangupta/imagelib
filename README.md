@@ -8,6 +8,14 @@
 bring out the best into easy to use `static utility` methods. This allows developers to focus more on the business
 logic than struggling with a lot of boiler-plate coding and/or error handling.
 
+## Why?
+
+A simple answer would be the following featues:
+
+* Use `Apache Sanselan` if image reading via `ImageIO` fails
+* Read `CMYK` color JPEG files - and not just `RGB` color-model files
+
+
 ## Usage examples
 
 Reading an image is as easy as:
