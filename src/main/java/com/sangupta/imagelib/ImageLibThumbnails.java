@@ -27,16 +27,20 @@ public class ImageLibThumbnails {
      * 
      * @param thumbHeight
      *            the height of the required thumbnail
+     * 
      * @return the thumbnail represented as {@link BufferedImage}. If the
      *         dimensions for the thumbnail are greater than the image's
      *         dimensions, original image size is returned
      * 
      * @throws NullPointerException
      *             if the source image object is <code>null</code>
+     *             
+     * @throws IllegalArgumentException if sourceImage is <code>null</code> 
+     * 
      */
     public static BufferedImage createThumbnail(final BufferedImage sourceImage, int thumbWidth, int thumbHeight) {
         if(sourceImage == null) {
-            return null;
+            throw new IllegalArgumentException("Source image cannot be null");
         }
         
         boolean onlyCrop = false;

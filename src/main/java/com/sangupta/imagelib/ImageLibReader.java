@@ -23,7 +23,7 @@ public class ImageLibReader {
 	 * My private logger
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ImageLibReader.class);
-
+	
 	/**
      * Create {@link BufferedImage} object from the byte representation of the
      * image.
@@ -36,10 +36,18 @@ public class ImageLibReader {
      * 
      * @throws IOException
      *             if something fails
+     *             
+     * @throws IllegalArgumentException if image data is <code>null</code>
      */
 	public static BufferedImage readImage(final byte[] bytes) throws IOException {
+	    if(bytes == null) {
+	        throw new IllegalArgumentException("Image bytes cannot be null");
+	    }
+	    
 		BufferedImage image = null;
 		ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
+		
+		// try the default java ImageIO
 		try {
 			image = ImageIO.read(bais);
 			return image;

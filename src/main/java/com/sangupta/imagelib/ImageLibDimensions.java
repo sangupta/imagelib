@@ -26,20 +26,25 @@ public class ImageLibDimensions {
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(ImageLibDimensions.class);
     
+    /**
+     * Read the image dimensions by first using the faster method. If it fails, we read the image
+     * via the slower method.
+     * 
+     * @param bytes the image data
+     * 
+     * @return an integer array with two elements, the first is the width, the
+     *         second the height of the image. Returns <code>null</code> if we cannot
+     *         read the image.
+     * 
+     * @throws IllegalArgumentException if image data is <code>null</code>
+     * 
+     */
     public static int[] getImageDimensions(byte[] bytes) {
         if(bytes == null) {
-            return null;
+            throw new IllegalArgumentException("Image bytes cannot be null");
         }
         
-        ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
-        int[] dim = null;
-        
-        try {
-            dim = getDimensionsFast(bais);
-        } catch (IOException e) {
-            LOGGER.debug("Unable to read image dimensions using faster method, trying the slow method now");
-        }
-        
+        int[] dim = getDimensionsFast(bytes);
         if(dim != null) {
             return dim;
         }
@@ -47,7 +52,22 @@ public class ImageLibDimensions {
         return getDimensionsSlow(bytes);
     }
     
+    /**
+     * 
+     * @param bytes the byte-array containing image data
+
+     * @return an integer array with two elements, the first is the width, the
+     *         second the height of the image. Returns <code>null</code> if we cannot
+     *         read the image.
+     * 
+     * @throws IllegalArgumentException if image data is <code>null</code>
+     * 
+     */
     private static int[] getDimensionsSlow(byte[] bytes) {
+        if(bytes == null) {
+            throw new IllegalArgumentException("Image bytes cannot be null");
+        }
+        
         BufferedImage image = null;
         try {
             image = ImageLibReader.readImage(bytes);
@@ -67,12 +87,27 @@ public class ImageLibDimensions {
     }
 
     /**
-     * Read image via ImageReader methods
+     * Read image dimensions via {@link ImageReader} methods - this does not
+     * read the entire image - but just the metadata.
      * 
-     * @param url
+     * @param inStream
+     *            the {@link InputStream} to read the image from
+     * 
+     * @return an integer array with two elements, the first is the width, the
+     *         second the height of the image
+     * 
      * @throws IOException
+     *             if something fails
+     *
+     * @throws IllegalArgumentException if image data is <code>null</code>
+     * 
      */
-    private static int[] getDimensionsFast(InputStream inStream) throws IOException {
+    private static int[] getDimensionsFast(byte[] bytes) {
+        if(bytes == null) {
+            throw new IllegalArgumentException("Image bytes cannot be null");
+        }
+        
+        ByteArrayInputStream inStream = new ByteArrayInputStream(bytes);
         ImageInputStream in = null;
         try {
             in = ImageIO.createImageInputStream(inStream);
@@ -86,9 +121,15 @@ public class ImageLibDimensions {
                     reader.dispose();
                 }
             }
+        } catch (IOException e) {
+            LOGGER.debug("Unable to read image");
         } finally {
             if (in != null) {
-                in.close();
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    // eat this up
+                }
             }
         }
         
