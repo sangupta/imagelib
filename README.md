@@ -1,5 +1,9 @@
 # imagelib
 
+[![Build Status](https://travis-ci.org/sangupta/imagelib.svg?branch=master)](https://travis-ci.org/sangupta/imagelib)
+[![Coverage Status](https://coveralls.io/repos/sangupta/imagelib/badge.png)](https://coveralls.io/r/sangupta/imagelib)
+[![Maven Version](https://maven-badges.herokuapp.com/maven-central/com.sangupta/imagelib/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.sangupta/imagelib)
+
 `imagelib` is a simple image library for Java. It wraps around functionality from many different imaging libraries to
 bring out the best into easy to use `static utility` methods. This allows developers to focus more on the business
 logic than struggling with a lot of boiler-plate coding and/or error handling.
