@@ -76,7 +76,7 @@ public class ImageLibReader {
 		} catch(Exception e) {
 			// eat up
 		} finally {
-			bais = null;
+		    ImageLibUtils.close(bais);
 		}
 		
 		// try basic sanselan

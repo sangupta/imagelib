@@ -100,9 +100,7 @@ public class ImageLibDimensions {
         } catch (IOException e) {
             LOGGER.debug("Unable to read image");
         } finally {
-            if(image != null) {
-                image.flush();
-            }
+            ImageLibUtils.close(image);
         }
         
         return null;
@@ -146,13 +144,8 @@ public class ImageLibDimensions {
         } catch (IOException e) {
             LOGGER.debug("Unable to read image");
         } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    // eat this up
-                }
-            }
+            ImageLibUtils.close(in);
+            ImageLibUtils.close(inStream);
         }
         
         return null;

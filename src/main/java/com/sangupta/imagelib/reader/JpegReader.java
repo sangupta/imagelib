@@ -171,4 +171,5 @@ public class JpegReader {
         cmykToRgb.filter(cmykRaster, rgbRaster);
         return rgbImage;
     }
+    
 }
