@@ -10,11 +10,13 @@ logic than struggling with a lot of boiler-plate coding and/or error handling.
 
 ## Why?
 
-A simple answer would be the following featues:
+Simple answer are the following featues:
 
+* Static utility classes to perform most functions
+* Reduces boiler plate code
 * Use `Apache Sanselan` if image reading via `ImageIO` fails
 * Read `CMYK` color JPEG files - and not just `RGB` color-model files
-
+* Uses `twelvemonkeys` plugins to enhance read/write support for many common formats* 
 
 ## Usage examples
 
