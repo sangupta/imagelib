@@ -4,7 +4,15 @@
 bring out the best into easy to use `static utility` methods. This allows developers to focus more on the business
 logic than struggling with a lot of boiler-plate coding and/or error handling.
 
-# Versioning
+## Usage examples
+
+Reading an image is as easy as:
+
+```java
+BufferedImage image = ImageLibReader.readImage(myBytes); // if you have read the image in memory
+```
+
+## Versioning
 
 For transparency and insight into our release cycle, and for striving to maintain backward compatibility, `iamgelib` will be 
 maintained under the Semantic Versioning guidelines as much as possible.
@@ -23,7 +31,7 @@ And constructed with the following guidelines:
 
 For more information on SemVer, please visit http://semver.org/.
 
-# License
+## License
 
 ```
 imagelib - Simple image library
