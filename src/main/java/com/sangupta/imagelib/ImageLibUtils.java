@@ -11,6 +11,12 @@ public class ImageLibUtils {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(ImageLibUtils.class);
     
+    /**
+	 * Close a given {@link Closeable} without throwing an exception.
+	 * 
+	 * @param closeable
+	 *            the {@link Closeable} to be closed
+	 */
     public static void close(Closeable closeable) {
         if(closeable == null) {
             return;
@@ -19,10 +25,16 @@ public class ImageLibUtils {
         try {
             closeable.close();
         } catch(IOException e) {
-            LOGGER.debug("Error closing closeable", e);
+            LOGGER.warn("Error closing closeable", e);
         }
     }
 
+    /**
+	 * Close a given {@link BufferedImage} without throwing an exception.
+	 *
+	 * @param image
+	 *            the {@link BufferedImage} to be closed
+	 */
     public static void close(BufferedImage image) {
         if(image == null) {
             return;
@@ -31,7 +43,7 @@ public class ImageLibUtils {
         try {
             image.flush();
         } catch(RuntimeException e) {
-            LOGGER.debug("Error closing image", e);
+            LOGGER.warn("Error closing image", e);
         }
     }
 
