@@ -35,6 +35,8 @@ import javax.imageio.stream.ImageInputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sangupta.imagelib.vo.ImageDimensions;
+
 /**
  * Utility methods to find the dimensions of the image.
  * 
@@ -61,12 +63,12 @@ public class ImageLibDimensions {
      * @throws IllegalArgumentException if image data is <code>null</code>
      * 
      */
-    public static int[] getImageDimensions(byte[] bytes) {
+    public static ImageDimensions getImageDimensions(byte[] bytes) {
         if(bytes == null) {
             throw new IllegalArgumentException("Image bytes cannot be null");
         }
         
-        int[] dim = getDimensionsFast(bytes);
+        ImageDimensions dim = getDimensionsFast(bytes);
         if(dim != null) {
             return dim;
         }
@@ -85,7 +87,7 @@ public class ImageLibDimensions {
      * @throws IllegalArgumentException if image data is <code>null</code>
      * 
      */
-    private static int[] getDimensionsSlow(byte[] bytes) {
+    private static ImageDimensions getDimensionsSlow(byte[] bytes) {
         if(bytes == null) {
             throw new IllegalArgumentException("Image bytes cannot be null");
         }
@@ -95,7 +97,7 @@ public class ImageLibDimensions {
             image = ImageLibReader.readImage(bytes);
             
             if(image != null) {
-                return new int[] { image.getWidth(), image.getHeight() };
+                return new ImageDimensions(image.getWidth(), image.getHeight());
             }
         } catch (IOException e) {
             LOGGER.debug("Unable to read image");
@@ -122,7 +124,7 @@ public class ImageLibDimensions {
      * @throws IllegalArgumentException if image data is <code>null</code>
      * 
      */
-    private static int[] getDimensionsFast(byte[] bytes) {
+    private static ImageDimensions getDimensionsFast(byte[] bytes) {
         if(bytes == null) {
             throw new IllegalArgumentException("Image bytes cannot be null");
         }
@@ -136,7 +138,7 @@ public class ImageLibDimensions {
                 ImageReader reader = readers.next();
                 try {
                     reader.setInput(in);
-                    return new int[] { reader.getWidth(0), reader.getHeight(0) };
+                    return new ImageDimensions(reader.getWidth(0), reader.getHeight(0));
                 } finally {
                     reader.dispose();
                 }
