@@ -3,9 +3,12 @@ language: java
 sudo: false
 
 jdk:
-  - openjdk7
-  - oraclejdk7
   - oraclejdk8
+  - oraclejdk11
+  - openjdk8
+  - openjdk9
+  - openjdk10
+  - openjdk11
 
 after_success:
   - mvn clean cobertura:cobertura coveralls:report
