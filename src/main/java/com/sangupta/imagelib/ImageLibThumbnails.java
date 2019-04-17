@@ -75,7 +75,7 @@ public class ImageLibThumbnails {
         }
         
         if(imageWidth == thumbWidth || imageHeight == thumbHeight) {
-            // one of the image dimesnsions is what we need - only crop the extra region
+            // one of the image dimensions is what we need - only crop the extra region
             onlyCrop = true;
         }
         
