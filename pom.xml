@@ -45,7 +45,7 @@
 		<build.timestamp>${maven.build.timestamp}</build.timestamp>
 		<build.number />
 
-		<twelve.monkeys.version>3.4.1</twelve.monkeys.version>
+		<twelve.monkeys.version>3.4.2</twelve.monkeys.version>
 	</properties>
 
 	<prerequisites>
@@ -63,7 +63,7 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.13</version>
+			<version>1.7.28</version>
 		</dependency>
 
 		<dependency>
@@ -151,7 +151,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5</version>
+				<version>3.8.1</version>
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
@@ -162,7 +162,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
-				<version>2.6</version>
+				<version>2.7</version>
 				<configuration>
 					<format>xml</format>
 					<maxmem>256m</maxmem>
@@ -173,14 +173,14 @@
 			<plugin>
 				<groupId>org.eluder.coveralls</groupId>
 				<artifactId>coveralls-maven-plugin</artifactId>
-				<version>3.1.0</version>
+				<version>4.3.0</version>
 			</plugin>
 
 			<!-- Generate the project-javadoc.jar for OSS repository -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
+				<version>3.1.1</version>
 				<configuration>
 					<detectOfflineLinks>false</detectOfflineLinks>
 					<breakiterator>true</breakiterator>
@@ -194,7 +194,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>2.2.1</version>
+				<version>3.1.0</version>
 				<executions>
 					<!-- ~ This workaround prevents Maven from executing the 'generate-sources' 
 						phase twice. ~ See http://jira.codehaus.org/browse/MSOURCES-13 ~ and http://blog.peterlynch.ca/2010/05/maven-how-to-prevent-generate-sources.html -->
